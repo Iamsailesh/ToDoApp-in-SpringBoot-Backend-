@@ -4,8 +4,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jp.myapp.dao.*;
 import com.jp.myapp.entities.Task;
+import com.jp.myapp.exception.TaskNotFoundException;
+import com.jp.myapp.repository.*;
 
 @Service
 public class TaskServices {
@@ -19,7 +20,7 @@ public class TaskServices {
 	}
 	
 	public Task getTaskById(int id) {
-		return taskRepo.findById(id).orElse(null);
+		return taskRepo.findById(id).orElseThrow(() -> new TaskNotFoundException("Task not found with ID: " + id));
 	}
 	
 	public Task createTask(Task task) {
@@ -27,15 +28,13 @@ public class TaskServices {
 	}
 	
 	public Task editTask(int id, Task newTask) {
-		Task oldTask= taskRepo.findById(id).orElse(null);
-		
-		if(oldTask !=null) {
+		Task oldTask= taskRepo.findById(id).orElseThrow(() -> new TaskNotFoundException("Task not found with ID:"+ id));
 			oldTask.setTitle(newTask.getTitle());
 			oldTask.setDescription(newTask.getDescription());
 			oldTask.setStatus(newTask.isStatus());
 			oldTask.setDueDate(newTask.getDueDate());
 			return taskRepo.save(oldTask);
-		}else return null;	
+		
 		
 	}
 	

@@ -17,7 +17,7 @@ import com.jp.myapp.entities.Task;
 import com.jp.myapp.services.*;
 
 @RestController
-public class taskController {
+public class TaskController {
 	
 	@Autowired
 	private TaskServices taskServices;

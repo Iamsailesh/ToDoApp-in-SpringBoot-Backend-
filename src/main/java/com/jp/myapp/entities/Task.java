@@ -13,15 +13,15 @@ public class Task {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String  title;
-	private String Description;
-	private boolean status;
+	private String description;
+	private boolean isCompleted;
 	private LocalDate dueDate;
-	public Task(int id, String title, String description, boolean status, LocalDate dueDate) {
+	public Task(int id, String title, String desc, boolean status, LocalDate dueDate) {
 		super();
 		this.id = id;
 		this.title = title;
-		Description = description;
-		this.status = status;
+		description = desc;
+		this.isCompleted = status;
 		this.dueDate = dueDate;
 	}
 	public int getId() {
@@ -37,16 +37,16 @@ public class Task {
 		this.title = title;
 	}
 	public String getDescription() {
-		return Description;
+		return description;
 	}
-	public void setDescription(String description) {
-		Description = description;
+	public void setDescription(String desc) {
+		description = desc;
 	}
 	public boolean isStatus() {
-		return status;
+		return isCompleted;
 	}
 	public void setStatus(boolean status) {
-		this.status = status;
+		this.isCompleted = status;
 	}
 	public LocalDate getDueDate() {
 		return dueDate;
@@ -60,7 +60,7 @@ public class Task {
 	}
 	@Override
 	public String toString() {
-		return "Task [id=" + id + ", title=" + title + ", Description=" + Description + ", status=" + status
+		return "Task [id=" + id + ", title=" + title + ", Description=" + description + ", status=" + isCompleted
 				+ ", dueDate=" + dueDate + "]";
 	}
 	
